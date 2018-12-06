@@ -23,7 +23,12 @@ const Burger = (props) =>{
      function getval(arr,val){
         return arr.concat(val);
     }
-
+/*
+  let a=[[],[],[],[]];
+   
+   console.log(a.reduce((acc,val)=>{
+    return acc.concat(val);
+   }));**/
     if(tri.length === 0)
     {
          tri= (<p>Please start adding ingredients</p>);

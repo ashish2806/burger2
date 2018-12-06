@@ -1,20 +1,31 @@
-import React from 'react';
-import Aux from '../../../hoc/Aux';
+import React, { Component } from 'react';
+import Aux from '../../../hoc/Aux/Aux';
+import Button from '../../Button/Button';3
 
-const OrderSummary = (props) =>{ 
-    const list = Object.keys(props.ingredients).map(
-        igKey=>{
-              return (<li key={igKey}><span style={{textTransform: 'capitalize'  }}>{igKey}</span>:{props.ingredients[igKey]}</li>);
-        });
-    return(
-        <Aux>
+
+class OrderSummary extends Component{
+
+    componentWillUpdate(){
+        console.log("component [order summary]");
+    }
+    render(){
+        const list = Object.keys(this.props.ingredients).map(
+            igKey=>{
+                  return (<li key={igKey}><span style={{textTransform: 'capitalize'  }}>{igKey}</span>:{this.props.ingredients[igKey]}</li>);
+            });
+        return(
+            <Aux>
             <p>Your order</p>
             <ul>
                     {list}
             </ul>
+            <Button btntype='continue' clicked={this.props.continue}>Continue</Button>
+            <Button btntype='cancel' clicked={this.props.cancel}>Cancel</Button>
         </Aux>
-    );
+        )
+    }
 }
+
 
 
 export default OrderSummary;

@@ -1,0 +1,121 @@
+1.npm create-react-app -g install
+
+2.create-react-app appname
+
+3.npm run eject   - to apply css to particular component and not globally if accidently used same classname
+
+4. go to config/webpack.config.dev.js and config/webpack.config.prod.js add 
+modules:true ,
+localIdentName :'[name]__[local]__[hash:base64:5]'
+to test: /\.css$ object to option part
+
+5. props types validaions
+npm install --save prop-types
+----------------
+imp things to know
+
+convert object to array   igkey holds keys of an array
+
+Object.key(objectname).map(igkey=>{
+	return (
+		JSX
+	)
+});
+
+
+AXIOS 
+
+
+
+axios.get('url').then(res=>{
+
+});
+
+axios.post('url',data).then(res=>{
+
+});
+
+
+axios.inceptors.request.use(res=>{
+    return response;
+},error=>{
+    return Promise.reject(error); // to handle eror locally
+});
+
+
+
+comon
+
+axios.defaults.baseURL = url;
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+axios.defaults.headers.post['Content'-Type] = 'application/json';
+
+
+instance
+
+const instance = axios.create({
+        baseURL;url
+});
+
+export instance;
+================================================
+
+
+Router
+
+
+npm install --save react-router react-router-dom
+
+import { BrowserRouter } from 'react-router-dom';
+
+wrap app div with 
+<BrowserRouter>
+<App></App>
+</BrowserRouter>
+
+child file 
+
+import { Route ,Switch ,Redirect } from 'react-route'
+<Switch>
+<Route  path="/" render={ () => <h1>whatevr</h1>} />
+<Route  path="/" component={component_name} />
+<Redirect  from="/" to="/posts" />
+</Switch>
+
+outside Switch
+<Redirect  to="/posts" />
+
+this.props.history.replace('/posts');
+
+
+<Route component={cm[p_name] } /> = 404 handle
+
+
+
+---------REDUX-------------------
+
+
+npm install --save redux react-redux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,10 +3,11 @@
     background-color: chocolate;
     display: flex;
     flex-flow: column;
-    margin: auto;
+    margin: 0 5px;
     align-items: center;
     box-shadow: 0 2px 1px #ccc;
     padding: 10px 0;
+    justify-content: space-between; 
 }
 
 
