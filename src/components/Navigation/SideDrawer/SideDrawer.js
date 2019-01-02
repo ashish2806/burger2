@@ -2,7 +2,7 @@ import React from 'react';
 import NavaigationItems from '../NavigationItems/Navigationitems';
 import BurgerLogo from '../../Logo/Logo';
 import classes from './SideDrawer.css';
-import Aux from '../../../hoc/Aux/Aux';
+import Aux from '../../../hoc/_Aux/_Aux';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 const SideDrawer = ( props ) =>{
     let  attachedClass = [classes.SideDrawer , classes.Close];

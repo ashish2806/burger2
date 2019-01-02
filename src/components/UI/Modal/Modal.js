@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import classes from './Modal.css';
 import Backdrop from '../Backdrop/Backdrop';
-import AUX from '../../../hoc/Aux/Aux';
+import AUX from '../../../hoc/_Aux/_Aux';
 
 class Model extends Component{
     shouldComponentUpdate(nextProps,nextState){
