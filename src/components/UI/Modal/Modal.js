@@ -6,13 +6,12 @@ import AUX from '../../../hoc/Aux/Aux';
 
 class Model extends Component{
     shouldComponentUpdate(nextProps,nextState){
-       return nextProps.show !== this.props.show;;
-           
-        
+        console.log(nextProps.children +"---------"+ this.props.children);
+       return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
     render(){
         return(
-            <AUX>
+            <AUX>   
             <Backdrop show={this.props.show} cancel={this.props.cancel}/>
         <div className={classes.Modal}
         style ={{

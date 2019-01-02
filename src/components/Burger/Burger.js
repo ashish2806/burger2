@@ -12,17 +12,20 @@ const Burger = (props) =>{
 
         });
     });*/
-  
-    let tri = Object.keys(props.ingredient).map(igkey =>{
-       return [...Array(props.ingredient[igkey])].map((_,i)=>{
-            return <Burgeringredients key={igkey+i} type={igkey}/>
-       });
-    }).reduce(getval);
-//.redude((arr,val)=>{ return arr.concat(val);}); //callback
- //can also be wrriten like this
-     function getval(arr,val){
-        return arr.concat(val);
-    }
+    let tri = null;
+    if(Object.keys(props.ingredient).length>0){
+         tri = Object.keys(props.ingredient).map(igkey =>{
+            return [...Array(props.ingredient[igkey])].map((_,i)=>{
+                 return <Burgeringredients key={igkey+i} type={igkey}/>
+            });
+         }).reduce(getval);
+     //.redude((arr,val)=>{ return arr.concat(val);}); //callback
+      //can also be wrriten like this
+          function getval(arr,val){
+             return arr.concat(val);
+         }
+    
+    
 /*
   let a=[[],[],[],[]];
    
@@ -33,6 +36,7 @@ const Burger = (props) =>{
     {
          tri= (<p>Please start adding ingredients</p>);
     }
+}
     return(
         <div className={classes.Burger}>
             <Burgeringredients type="bread-BreadTop"/>

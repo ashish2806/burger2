@@ -5,14 +5,15 @@ import classes from './CheckoutSummary.css';
 const CheckoutSummary = ( props ) =>{
     return(
             <div>   
-                    <div className={classes.CheckoutSummary}>
-                    <h1>Your Order</h1>
-                    <Burger ingredient={props.ingredient}/>
-                    </div>
-                    <div style={{ width:'300px',margin:'auto'}}>
-                    <Button  clicked={props.Checkoutcancel}>CANCEL</Button>
-                    <Button clicked={props.Checkoutcontinue}>CONTINUE</Button>
-                    </div>
+                <div className={classes.CheckoutSummary}>
+                        <h1>Your Order</h1>
+                        <div style={{ width:'100%',margin:'auto'}}>
+                        <Burger ingredient={props.ingredient}/>
+                        </div>
+                
+                        <Button btnType="Success" clicked={props.Checkoutcancel}>CANCEL</Button>
+                        <Button btnType="Danger" clicked={props.Checkoutcontinue}>CONTINUE</Button>
+                </div>
 
             </div>      
     );

@@ -1,4 +1,4 @@
-import * as actionTypes from  './action';
+import * as actionTypes from  '../actions/action';
 
 
 const initialState = {
@@ -8,7 +8,10 @@ const initialState = {
         cheese:0,
         bacon:0
          },
-         totalPrice :1
+         totalPrice :1,
+         email:'',
+         password:'',
+         loggedin : false
 };
 const PRICES ={
     salad:1,
@@ -43,6 +46,40 @@ const reducer = (state=initialState , action) =>{
              
 
         };
+
+        case (actionTypes.ONLOGGEDIN):
+        {
+            
+            
+            return{
+                ...state,
+                loggedin :true
+            }//to update array immutibly use conact instead of push
+        }
+        case (actionTypes.ONLOGGEDOUT):
+        {
+            sessionStorage.setItem("userData","");
+            sessionStorage.clear();
+            
+            return{
+                ...state,
+                loggedin : false
+            }//to update array immutibly use conact instead of push
+        }
+        case (actionTypes.ONEMAIL):
+        {
+            return{
+                ...state,
+                email : action.value
+            }
+        }
+        case (actionTypes.ONPASSWORD):
+        {
+            return{
+                ...state,
+                password : action.value
+            }
+        }
         default :
         return state;
     }
