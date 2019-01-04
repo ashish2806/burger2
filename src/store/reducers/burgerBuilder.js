@@ -7,7 +7,8 @@ const initialState = {
          email:'',
          password:'',
          loggedin : false,
-         error:false
+         error:false,
+         building : false
 };
 const PRICES ={
     salad:1,
@@ -21,7 +22,8 @@ const addingr = (state,action) =>{
             const updateingredients = updateObject(state.ingredient,updateingredient);
             const updatestate = {
                 ingredient:updateingredients,
-            totalPrice : state.totalPrice + PRICES[action.ingredientName]
+            totalPrice : state.totalPrice + PRICES[action.ingredientName],
+            building : true
             }
             return updateObject(state,updatestate);
 
@@ -36,7 +38,8 @@ const reducer = (state=initialState , action) =>{
             const updateingredients1 = updateObject(state.ingredient,updateingredient1);
             const updatestate1 = {
                 ingredient:updateingredients1,
-            totalPrice : state.totalPrice + PRICES[action.ingredientName]
+            totalPrice : state.totalPrice + PRICES[action.ingredientName],
+            building : true
             }
             return updateObject(state,updatestate1);
         case actionTypes.SET_INGRDIENTS:
@@ -50,7 +53,9 @@ const reducer = (state=initialState , action) =>{
                 
             },
             totalPrice:1,
-            error:false});
+            error:false,
+            building : false
+        });
             
         
         case actionTypes.FETCH_INGRDIENTS_FAILED:

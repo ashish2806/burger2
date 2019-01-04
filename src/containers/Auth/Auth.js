@@ -6,6 +6,7 @@ import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 class Auth extends Component{
     state={
         controls:{
@@ -41,6 +42,11 @@ class Auth extends Component{
         isSignup : true
     }
 
+        componentDidMount (){
+            if(!this.props.buildingBurger && this.props.AuthenticatePath != '/'){
+                this.props.onSetAuthRedirectPath();
+            }
+        }
     checkvalidity(value,rules){
         let is_valid= true   ;
          if(rules.required){
@@ -83,6 +89,7 @@ class Auth extends Component{
         )
     }
     authHandler = (event) =>{
+        //alert();
         event.preventDefault();
         this.props.onAuth(this.state.controls.email.value,this.state.controls.password.value,this.state.isSignup);
     }
@@ -111,8 +118,8 @@ class Auth extends Component{
                             />
 
                         ))}
-                            <Button  btnType="Success" > Submit </Button>{/*clicked={this.orderHandler}*/}
-                            <Button btnType="Danger" clicked={this.switchHandler} >Switch to {this.state.isSignup ? 'SIGNIN':'SIGNUP'}</Button>
+                            <Button  btnType="Success" > {this.state.isSignup ? 'SIGNUP':'SIGNIN'} </Button>{/*clicked={this.orderHandler}*/}
+                           
                     </form>
                    
         );
@@ -124,10 +131,17 @@ class Auth extends Component{
         if(this.props.error){
             errorMessage = this.props.error.message;
         }
+        let tr = null;
+        
+        if(this.props.isAuthenticate){
+            tr=<Redirect to={this.props.AuthenticatePath} />
+        }
         return(
             <div className={classes.contactData}>
+           {tr}
             {errorMessage}
                 {form}
+                <Button btnType="Danger" clicked={this.switchHandler} >Switch to {this.state.isSignup ? 'SIGNIN':'SIGNUP'}</Button>
             </div>
         );
     }
@@ -135,13 +149,17 @@ class Auth extends Component{
 const mapStatetpProps = state => {
     return{
             loading : state.auth.loading,
-            error : state.auth.error
+            error : state.auth.error,
+            isAuthenticate : state.auth.token !== null,
+            buildingBurger : state.burgerBuilder.building,
+            AuthenticatePath : state.auth.Auth_redirec_path
     }
 }
 
 const mapDispatchtoProps = dispatch =>{
     return{
-        onAuth : (email,password,isSignup) =>dispatch(actions.auth(email,password,isSignup))
+        onAuth : (email,password,isSignup) =>dispatch(actions.auth(email,password,isSignup)),
+        onSetAuthRedirectPath : () =>dispatch(actions.authRedirectPath('/'))
     }
 }
 export default connect(mapStatetpProps,mapDispatchtoProps)(Auth);

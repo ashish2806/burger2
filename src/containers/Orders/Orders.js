@@ -11,12 +11,13 @@
           return(
             <div>
                 {console.log(this.props.orders)}
-               {this.props.orders.map(order=>{
+                {this.props.orders.map(order=>(
                    <Order key={order.id}
                         ingredients = {order.ingredients}
-                        
                     />
-               })}
+                ))} 
+
+                               
             </div>
           );
       }

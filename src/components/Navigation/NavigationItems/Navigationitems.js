@@ -12,8 +12,8 @@ class NavaigationItems extends Component{
              
                  Nav = <Aux>
                  <NavigationItem link="/">Burger Builder</NavigationItem>
-                <NavigationItem exact link="/orders">ORDERS</NavigationItem>
-                <NavigationItem link="/checkout">Checkout</NavigationItem>
+                 {this.props.authenticate ? <NavigationItem exact link="/orders">ORDERS</NavigationItem> : null }
+                {this.props.authenticate ? <NavigationItem link="/checkout">Checkout</NavigationItem> : null }
                {!this.props.authenticate ? <NavigationItem link="/auth">Auth</NavigationItem>
                 : <NavigationItem link="/logout">LOGOUT</NavigationItem>}
                 </Aux>;

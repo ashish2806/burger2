@@ -9,6 +9,7 @@ import * as actions from '../../store/actions/index';
 import axios from '../../../src/Axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErroHandler from '../../hoc/WithErrorHandler/WitherroHandler';
+import { Redirect } from 'react-router-dom';
 class BurgerBuilder extends Component{
    /* constructor(props){
         super(props);
@@ -91,7 +92,13 @@ class BurgerBuilder extends Component{
 
     }*/
     purchasingHandler = () =>{
+        if(this.props.isAuthenticate){
             this.setState({purchasing : true});
+        }else{
+            this.props.onSetAuthRedirectPath('/checkout');
+            this.props.history.push('/auth');
+        }
+            
             
     }
     cancelHandler = () =>{
@@ -167,6 +174,7 @@ class BurgerBuilder extends Component{
                                purchasable={this.updatePurchasable(this.props.ings)}
                                purchasing={this.purchasingHandler}
                                price = {this.props.price}
+                               isAuth = {this.props.isAuthenticate}
                                />
                             </Aux>
                         );
@@ -187,7 +195,9 @@ const mapStatetoProps = state =>{
     return {
         ings : state.burgerBuilder.ingredient,
         price : state.burgerBuilder.totalPrice,
-        error:state.burgerBuilder.  error
+        error:state.burgerBuilder.  error,
+        isAuthenticate : state.auth.token != null,
+        isBuilding : state.burgerBuilder.building
     };
 }
 const mapDispatchtoProps = dispatch =>{
@@ -195,7 +205,9 @@ const mapDispatchtoProps = dispatch =>{
         onIngredientAdded : (ingName) =>dispatch(actions.addIngredient(ingName)),
         onIngredientRemoved : (ingName) =>dispatch(actions.removeIngredient(ingName)),
         onsetingredients : () =>dispatch(actions.initIngredients()),
-        onpurchasedinit :() =>dispatch(actions.purchasedinit())
+        onpurchasedinit :() =>dispatch(actions.purchasedinit()),
+        onSetAuthRedirectPath : (path) =>dispatch(actions.authRedirectPath(path))
+         
     };
 }
 
